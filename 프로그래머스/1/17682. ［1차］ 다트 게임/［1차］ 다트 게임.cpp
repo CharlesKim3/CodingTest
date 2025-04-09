@@ -34,16 +34,12 @@ int solution(string dartResult) {
         
         if(dartResult[i] == '*')
         {
-            if(score.size() == 1)
-                score[score.size() -1] *= 2;
-            else
+            int last = score.size() - 1;
+            for (int j = last; j >= last - 1; --j)
             {
-                    for(int j=score.size() - 1; j>=score.size()-2; --j)
-                {
-                    if(j < 0)
-                        break;
-                    score[j] *=2;
-                }
+                if (j < 0)
+                    break;
+                score[j] *= 2;
             }
         }
         
