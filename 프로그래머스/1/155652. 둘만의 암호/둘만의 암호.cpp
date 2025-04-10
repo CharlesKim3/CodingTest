@@ -6,31 +6,21 @@ using namespace std;
 string solution(string s, string skip, int index) {
     string answer = "";
     
-    for(int i=0; i<s.size(); ++i)
+    for(auto s1 : s)
     {
-        char convert = s[i] + 1;
         int count = 0;
+        int convert = s1 - 'a';
         
-        // u v w x y z a b
-        //   1   2 3 4 5
-        while(count != index)
+        while(count < index)
         {
-            if(convert > 'z')
-                convert = 'a';
+            ++convert;
+            s1 = (convert % 26) + 'a';
             
-            if(skip.find(convert) != string::npos)
-            {
-               convert += 1;
-            }  
-            else
-            {
+            if(skip.find(s1) == string::npos)
                 ++count;
-                convert += 1; 
-            }
         }
         
-        answer += (convert - 1);
+        answer += s1;
     }
-    
     return answer;
 }
