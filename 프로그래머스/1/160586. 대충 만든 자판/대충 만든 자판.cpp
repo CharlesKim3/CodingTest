@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-#include <algorithm>
+
 using namespace std;
 
 vector<int> solution(vector<string> keymap, vector<string> targets) {
@@ -14,21 +14,21 @@ vector<int> solution(vector<string> keymap, vector<string> targets) {
             int tmp = -1;
             bool check = false;
             for(auto& k : keymap)
-            {   
+            {
                 int it = k.find(targets[i][idx]);
-                if(it != string::npos && (tmp > it || tmp == -1))
+                if(it != string::npos && (it < tmp || tmp == -1))
                 {
                     tmp = it + 1;
                     check = true;
                 }
             }
-            if(check == true)
+            if(check)
                 answer[i] += tmp;
             else
             {
                 answer[i] = -1;
                 break;
-            }   
+            }
             ++idx;
         }
     }
