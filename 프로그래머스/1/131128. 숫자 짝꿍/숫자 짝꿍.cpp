@@ -5,27 +5,25 @@ using namespace std;
 
 string solution(string X, string Y) {
     string answer = "";
-    int count[10] = {};
     
-    for(auto y : Y)
-    {
+    vector<int> count(10,0);
+    
+    for(auto& y : Y)
         count[y - '0']++;
-    }
     
-    for(auto x : X)
+    for(auto& x : X)
     {
-        int ch = x - '0';
-        if(count[ch] > 0)
+        int ch = count[x - '0'];
+        if(ch > 0)
         {
             answer += x;
-            count[ch]--;
+            count[x - '0']--;
         }
     }
     
-     sort(answer.begin(), answer.end(), greater<char>());
-    
+    sort(answer.begin(),answer.end(),greater<char>());
     if(answer.empty()) answer = "-1";
-    else if (answer[0] == '0') answer = "0";
+    else if(answer[0] == '0') answer = "0";
     
     return answer;
 }
