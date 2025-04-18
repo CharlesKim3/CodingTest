@@ -1,10 +1,10 @@
 # [level 0] 개미 군단 - 120837 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120837?language=cpp) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120837) 
 
 ### 성능 요약
 
-메모리: 4.2 MB, 시간: 0.01 ms
+메모리: 4.22 MB, 시간: 0.01 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 04월 18일 14:32:04
+2025년 04월 18일 14:33:46
 
 ### 문제 설명
 
