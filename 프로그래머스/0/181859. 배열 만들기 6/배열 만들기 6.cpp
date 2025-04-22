@@ -13,7 +13,7 @@ vector<int> solution(vector<int> arr) {
         else
         {
             if(answer.back() == arr[i])
-                answer.erase(answer.end() - 1);
+                answer.pop_back();
             else
                 answer.push_back(arr[i]);
         }
