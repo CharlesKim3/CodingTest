@@ -1,6 +1,4 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
 int main()
@@ -8,20 +6,22 @@ int main()
 	int N,M;
 	cin >> N >> M;
 
-	vector<int> v(N);
+	int* basket = new int[N];
 	for (int i = 0; i < N; ++i)
-		v[i] = i + 1;
+		basket[i] = i + 1;
 
 	for (int j = 0; j < M; ++j)
 	{
-		int tmp1, tmp2;
-		cin >> tmp1 >> tmp2;
+		int a, b;
+		cin >> a >> b;
 
-		swap(v[tmp1 - 1], v[tmp2 - 1]);
+		swap(basket[a - 1], basket[b - 1]);
 	}
-	
-	for (auto& v1 : v)
-		cout << v1 << " ";
+
+	for (int i = 0; i < N; ++i)
+		cout << basket[i] << " ";
+
+	delete[] basket;
 
 	return 0;
 }
