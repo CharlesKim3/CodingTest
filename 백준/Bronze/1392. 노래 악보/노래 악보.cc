@@ -32,5 +32,10 @@ int main()
 
 	for (int j = 0; j < b; ++j)
 		cout << answer[j] << endl;
+
+	delete[] music;
+	delete[] question;
+	delete[] answer;
+
 	return 0;
 }
