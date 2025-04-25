@@ -6,52 +6,51 @@ using namespace std;
 string solution(vector<int> numbers, string hand) {
     string answer = "";
     
-    int LeftHand = 10;
-    int RightHand = 12;
-    for(int i=0; i<numbers.size(); ++i)
+    int leftHand = 10;
+    int rightHand = 12;
+    for(auto& n : numbers)
     {
-        if(numbers[i] == 1 || numbers[i] == 4 || numbers[i] == 7)
+        if(n == 1 || n == 4 || n == 7)
         {
             answer += "L";
-            LeftHand = numbers[i];
+            leftHand = n;
         }
         
-        else if(numbers[i] == 3 || numbers[i] == 6 || numbers[i] == 9)
+        else if(n == 3 || n ==6 || n == 9)
         {
             answer += "R";
-            RightHand = numbers[i];
+            rightHand = n;
         }
         
         else
         {
-            if(numbers[i] == 0) numbers[i] = 11;
-            int leftDist = (abs(numbers[i] - LeftHand) / 3) + (abs(numbers[i] - LeftHand) % 3);
-            int rightDist = (abs(numbers[i] - RightHand) / 3) + (abs(numbers[i] - RightHand) % 3);
-            
+            if(n == 0) n =11;
+            int leftDist = (abs(n - leftHand) / 3) + (abs(n - leftHand) % 3);
+            int rightDist = (abs(n - rightHand) / 3) + (abs(n - rightHand) % 3);
+
             if(leftDist > rightDist)
             {
                 answer += "R";
-                RightHand = numbers[i];
+                rightHand = n;
             }
             
-            else if(leftDist < rightDist)
+            else if(rightDist > leftDist)
             {
                 answer += "L";
-                LeftHand = numbers[i];
+                leftHand = n;
             }
             
-            else
+            else 
             {
                 if(hand == "left")
                 {
                     answer += "L";
-                    LeftHand = numbers[i];
+                    leftHand = n;
                 }
-                
                 else
                 {
                     answer += "R";
-                    RightHand = numbers[i];
+                    rightHand = n;
                 }
             }
         }
