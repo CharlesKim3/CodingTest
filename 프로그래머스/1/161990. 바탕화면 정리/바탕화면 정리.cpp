@@ -4,41 +4,35 @@
 using namespace std;
 
 vector<int> solution(vector<string> wallpaper) {
-    vector<int> answer;
-    int lux, luy, rdx, rdy;
-    
-   for(int i=0; i<wallpaper.size(); ++i)
-   {
-       luy = wallpaper[i].find('#');
-       if(luy != string::npos)
-       {
-           lux = i;
-           rdx = i;
-           rdy = luy;
-           break;
-       }
-   }
+    vector<int> answer(4,0);
     
     for(int i=0; i<wallpaper.size(); ++i)
     {
-        for(int j=0; j<wallpaper[i].size(); ++j)
+        int tmp = wallpaper[i].find("#");
+        if(tmp != string::npos)
         {
-            if(wallpaper[i][j] == '#' && lux > i)
-                lux = i;
-            if(wallpaper[i][j] == '#' && luy > j)
-                luy = j;
-            if(wallpaper[i][j] == '#' && rdx < i)
-                rdx = i;
-            if(wallpaper[i][j] == '#' && rdy < j)
-                rdy = j;
+            answer[0] = i;
+            answer[1] = tmp;
+            answer[2] = i;
+            answer[3] = tmp;
+            break;
         }
     }
-
     
-    answer.push_back(lux);
-    answer.push_back(luy);
-    answer.push_back(rdx + 1);
-    answer.push_back(rdy + 1);
+     for(int i=0; i<wallpaper.size(); ++i)
+    {
+        for(int j=0; j<wallpaper[i].size(); ++j)
+        {
+            if(wallpaper[i][j] == '#' && answer[1] > j)
+                answer[1] = j;
+            if(wallpaper[i][j] == '#' && answer[2] < i)
+                answer[2] = i;
+            if(wallpaper[i][j] == '#' && answer[3] < j)
+                answer[3] = j;
+        }
+    }
+    answer[2] += 1;
+    answer[3] += 1;
     
     return answer;
 }
