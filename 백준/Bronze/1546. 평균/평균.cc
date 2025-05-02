@@ -1,22 +1,22 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int main()
 {
 	int num;
 	cin >> num;
-
-	vector<int> score(num);
+	int* score = new int[num];
+	double max = 0;
 	for (int i = 0; i < num; ++i)
 	{
 		int tmp;
 		cin >> tmp;
-		score[i] = tmp;
+		*(score + i) = tmp;
+		if (score[i] > max)
+			max = score[i];
 	}
-
-	double max = *max_element(score.begin(), score.end());
+	
 	double sum = 0;
 	for (int i = 0; i < num; ++i)
 	{
