@@ -1,31 +1,27 @@
 #include <string>
 #include <vector>
- 
+
 using namespace std;
- 
+
 int solution(vector<int> schedules, vector<vector<int>> timelogs, int startday) {
     int answer = 0;
     
-    for(int i=0; i<schedules.size(); i++)
+    for(int i=0; i<timelogs.size(); ++i)
     {
-        int goal = ((schedules[i]/100 + (schedules[i]%100+10)/60)*100) + (schedules[i]%100+10)%60;
-        int start_cnt = startday-1, chk=1;
-        
-        for(int j=0; j<timelogs[i].size(); j++)
+        bool check = true;
+        int hour = (schedules[i]/100 + (schedules[i]%100+10)/60) * 100;
+        int minute = (schedules[i]%100+10)%60;
+        int goal = hour + minute;
+        for(int j=0; j<timelogs[i].size(); ++j)
         {
-            int cmp_time = timelogs[i][j];
-            if(start_cnt%7 < 5)
-            {
-                if(goal < cmp_time)
-                {
-                    chk=0;
-                    break;
-                }
-            }
-            start_cnt++;
+            int skip = (startday + j)%7;
+            if(skip == 6 || skip == 0) continue;          
+            if(goal < timelogs[i][j])
+                check = false;
         }
-        
-        if(chk) answer++;
+        if(check)
+            ++answer;
     }
+    
     return answer;
 }
