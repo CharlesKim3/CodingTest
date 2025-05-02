@@ -6,17 +6,14 @@ int main()
 	int num1 = 0;
 	int num2 = 0;
 	cin >> num1>>num2;
+
+	int a, b, c, d;
+	a = num1 * (num2 % 10);
+	b = num1 * ((num2 % 100) / 10);
+	c = num1 * (num2 / 100);
+	d = num1 * num2;
 	
-	int one, ten, hondred,sum;
-
-	one = (num2 % 100) % 10;
-	ten = (num2 % 100) / 10;
-	hondred = num2 / 100;
-
-	cout << num1 * one << endl;
-	cout << num1 * ten << endl;
-	cout << num1 * hondred << endl;
-	cout<< (num1 * one) + (num1 * ten * 10) + (num1 * hondred * 100);
+	cout << a << endl << b << endl << c << endl << d;
 
 	return 0;
 }
