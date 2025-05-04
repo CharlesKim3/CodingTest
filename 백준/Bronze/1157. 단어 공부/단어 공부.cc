@@ -13,28 +13,22 @@ int main()
 	for (int i = 0; i < word.size(); ++i)
 	{
 		word[i] = toupper(word[i]);
-		if (count.find(word[i]) == count.end())
-			count.insert(make_pair(word[i], 1));
-		else
-			count[word[i]]++;
+		count[word[i]]++;
 	}
 
-	vector<pair<char, int>> answer(count.begin(),count.end());
-	sort(answer.begin(), answer.end(), [](auto prev, auto next) {
-			return prev.second > next.second;
-		});
-	
-	int maxNum = answer[0].second;
-	for (int i = 1; i < answer.size(); ++i)
+	int max = 0;
+	char answer;
+	for (auto i = count.begin(); i != count.end(); ++i)
 	{
-		if (maxNum == answer[i].second)
+		if (max < i->second)
 		{
-			cout << "?";
-			return 0;
+			max = i->second;
+			answer = i->first;
 		}
+		else if (max == i->second)
+			answer = '?';
 	}
-
-	cout << answer[0].first;
-
+	cout << answer;
+	
 	return 0;
 }
