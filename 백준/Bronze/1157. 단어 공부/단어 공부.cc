@@ -29,6 +29,5 @@ int main()
 			answer = '?';
 	}
 	cout << answer;
-	
 	return 0;
 }
