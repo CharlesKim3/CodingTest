@@ -43,30 +43,30 @@ vector<int> solution(vector<string> park, vector<string> routes) {
             move_x[i] = 0;
         }
     }
-
+    
     for(int i=0; i<move_x.size(); ++i)
     {
         bool check = true;
-        int dx = move_x[i];
-        int dy = move_y[i];
+        int check_x = move_x[i];
+        int check_y = move_y[i];
         
-        for(int step = 1; step <= abs(dx + dy); ++step)
+        for(int step = 1; step <= abs(check_x + check_y); ++step)
         {
-            int nx = start[1] + (dx != 0 ? step * (dx > 0 ? 1 : -1) : 0);
-            int ny = start[0] + (dy != 0 ? step * (dy > 0 ? 1 : -1) : 0);
+           int nx = start[1] + (check_x != 0 ? step * (check_x > 0 ? 1 : -1) : 0);
+           int ny = start[0] + (check_y != 0 ? step * (check_y > 0 ? 1 : -1) : 0);
 
-            if(ny < 0 || ny >= park.size() || nx < 0 || nx >= park[0].size() || park[ny][nx] == 'X')
-            {
+            if(0<= nx && nx < park[0].size() &&
+               0<= ny && ny < park.size() && park[ny][nx] != 'X')
+                continue;
+            else
                 check = false;
-                break;
-            }
+            
         }
-
         if(check)
         {
-            start[0] += dy;
-            start[1] += dx;
-        }
+            start[0] += check_y;
+            start[1] += check_x;
+        } 
     }
 
     answer = start;
