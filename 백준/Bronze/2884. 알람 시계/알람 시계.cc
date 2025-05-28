@@ -3,19 +3,17 @@ using namespace std;
 
 int main()
 {
-	int hour, min;
-	cin >> hour >> min;
+	int h, m;
+	cin >> h >> m;
 
-	if (min - 45 >= 0)
-		cout << hour << " " << min - 45;
+	if (m - 45 >= 0)
+		m -= 45;
 	else
 	{
-		if(hour != 0)
-			cout << hour - 1 << " " << 60 + (min - 45);
-		else
-			cout << 24 - 1 << " " << 60 + (min - 45);
+		m = 60 + (m - 45);
+		h = h > 0 ? h - 1 : 23;
 	}
-		
+	cout << h << " " << m;
 
 	return 0;
 }
