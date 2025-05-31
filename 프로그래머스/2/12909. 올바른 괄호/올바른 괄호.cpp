@@ -6,18 +6,18 @@ using namespace std;
 bool solution(string s)
 {
     bool answer = true;
-    stack<char> stk;
-    for(auto c : s)
+    int count = 0;
+    for(auto d : s)
     {
-        if(c == '(')
-            stk.push(c);
+        if(d == '(')
+            ++count;
         else
         {
-            if(stk.empty()) return false;
-            else stk.pop();
+            if(count > 0) --count;
+            else return false;
         }
     }
-    if(!stk.empty()) return false;
+    
 
-    return answer;
+    return count ? false : true;
 }
