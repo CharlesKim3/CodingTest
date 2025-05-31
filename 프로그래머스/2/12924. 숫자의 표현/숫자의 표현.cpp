@@ -6,20 +6,17 @@ using namespace std;
 int solution(int n) {
     int answer = 0;
     
-    int idx = 1;
-    while(idx <= n)
+    for(int i=1; i<=n; ++i)
     {
         int sum = 0;
-        int count = idx;
+        int count = i;
         while(sum < n)
         {
             sum += count;
             if(sum == n) ++answer;
             ++count;
         }
-        ++idx;
     }
-    
     
     return answer;
 }
