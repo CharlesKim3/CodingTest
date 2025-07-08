@@ -1,67 +1,31 @@
 #include <string>
 #include <vector>
-
+#include <sstream>
 using namespace std;
 
 string solution(string polynomial) {
     string answer = "";
-    
+    stringstream ss(polynomial);
     string tmp = "";
-    string X = "";
-    int numSum = 0;
     
-    bool XOrNum = false;
-    for(int i=0; i<polynomial.size(); ++i)
+    int xSum = 0, nSum = 0;
+    while(getline(ss, tmp, ' '))
     {
-        if(polynomial[i] != ' ' && polynomial[i] != '+')
-            tmp += polynomial[i];
-        else if(polynomial[i] == '+' && !tmp.empty())
+        if(tmp.back() == 'x')
         {
-            for(auto t : tmp)
-                if(t == 'x') XOrNum = true;
-            
-            if(XOrNum) X += tmp;
-            else numSum += stoi(tmp);
-            
-            XOrNum = false;
-            tmp = "";
+            if(tmp.size() == 1) ++xSum;
+            else xSum += stoi(tmp.substr(0, tmp.size() - 1));
         }
+        else if(tmp != "+") nSum += stoi(tmp);
     }
     
-    if(!tmp.empty())
-    {
-        for(auto t : tmp)
-            if(t == 'x') XOrNum = true;
-        if(XOrNum) X += tmp;
-        else numSum += stoi(tmp);
-    }
-    
-    
-    string tmp2 = "";
-    int xSum = 0;
-    for(auto x : X)
-    {
-        if(x != 'x') tmp2 += x;
-        else
-        {
-            if(tmp2.empty()) xSum +=1;
-            else xSum += stoi(tmp2);
-            tmp2 = "";
-        }
-    }
-    
-    if(xSum != 1)
-    {
-        if(xSum && numSum) answer = to_string(xSum) + "x + "+ to_string(numSum);
-        else if(!xSum) answer = to_string(numSum);
-        else if(!numSum) answer = to_string(xSum) + "x";
-    }
+    if(!xSum) return to_string(nSum);
     else
     {
-        if(xSum && numSum) answer = "x + "+ to_string(numSum);
-        else if(!numSum) answer = "x";
+        string temp = "";
+        if(xSum == 1) temp = "x";
+        else temp = to_string(xSum) + "x";
+        if(nSum) return temp + " + " + to_string(nSum);
+        else return temp;
     }
-    
-    
-    return answer;
 }
