@@ -1,45 +1,43 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <unordered_map>
 using namespace std;
+
 int main()
 {
 	int N;
 	cin >> N;
-	string* word = new string[N];
-
-	for (int i = 0; i < N; ++i)
-	{
-		string tmp = "";
-		cin >> tmp;
-		word[i] = tmp;
-	}
-
+	vector<string> word(N, "");
+	
+	for (int i = 0; i < word.size(); ++i)
+		cin >> word[i];
+	
 	int count = 0;
-	for (int i = 0; i < N; ++i)
+	for (int i = 0; i < word.size(); ++i)
 	{
 		unordered_map<char, int> m;
-		char start = word[i][0];
+		char comp = word[i][0];
 		for (int j = 1; j < word[i].size(); ++j)
 		{
-			if (start == word[i][j]) continue;
+			if (comp == word[i][j]) continue;
 			else
 			{
-				m[start]++;
-				start = word[i][j];
+				m[comp]++;
+				comp = word[i][j];
 			}
 		}
-		m[start]++;
+		m[comp]++;
 		bool check = true;
-		for (auto M : m)
+		for (auto m1 : m)
 		{
-			if (M.second > 1)
+			if (m1.second > 1)
 			{
 				check = false;
 				break;
 			}
 		}
-		
+
 		if (m.empty() || check) ++count;
 	}
 
