@@ -4,18 +4,22 @@
 using namespace std;
 
 vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2) {
-    int n = arr1.size();
-    int m = arr1[0].size();
-    int k = arr2[0].size();
+    vector<vector<int>> answer;
 
-    vector<vector<int>> answer(n, vector<int>(k, 0));
-
-    for(int i=0; i<n; ++i) {
-        for(int j=0; j<k; ++j) {
-            for(int l=0; l<m; ++l) {
-                answer[i][j] += arr1[i][l] * arr2[l][j];
+    for(int i = 0; i < arr1.size(); ++i)
+    {
+        vector<int> tmp;
+        for(int j = 0; j < arr2[0].size(); ++j)
+        {
+            int sum = 0;
+            for(int k = 0; k < arr2.size(); ++k)
+            {
+                sum += arr1[i][k] * arr2[k][j];
             }
+            tmp.push_back(sum);
         }
+        answer.push_back(tmp);
     }
+
     return answer;
 }
