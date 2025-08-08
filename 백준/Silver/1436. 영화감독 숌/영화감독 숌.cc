@@ -5,9 +5,9 @@ int main()
 {
 	int N;
 	cin >> N;
-
+	
 	int cnt = 0;
-	int num = 665;
+	int num = 655;
 	while (1)
 	{
 		++num;
@@ -21,7 +21,7 @@ int main()
 			}
 			tmp /= 10;
 		}
-		
+
 		if (cnt == N)
 		{
 			cout << num << endl;
