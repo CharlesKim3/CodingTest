@@ -5,13 +5,10 @@ using namespace std;
 
 string solution(string my_string, vector<int> indices) {
     string answer = "";
-    
-    for(int i=0; i<my_string.size(); ++i)
+    sort(indices.begin(),indices.end(),greater<int>());
+    for(int i=0; i<indices.size(); ++i)
     {
-        auto it = find(indices.begin(), indices.end(), i);
-        if(it == indices.end())
-            answer += my_string[i];
+        my_string.erase(indices[i],1);
     }
-    
-    return answer;
+    return my_string;
 }
