@@ -1,27 +1,21 @@
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 vector<int> solution(vector<int> arr, int k) {
     vector<int> answer;
+    unordered_map<int,int> m;
     
-    for(int i=0; i<arr.size(); ++i)
+    for(auto& a : arr)
     {
-        auto it = find(answer.begin(),answer.end(), arr[i]);
-        if(it == answer.end())
-            answer.push_back(arr[i]);
+        if(m[a] == 0)
+        {
+            m[a]++;
+            answer.push_back(a);
+        }
     }
     
-    if(answer.size() >= k)
-        answer.erase(answer.begin() + k, answer.end());
-    else
-    {
-        int repeat = k - answer.size();
-        for(int i=0; i<repeat; ++i)
-            answer.push_back(-1);
-    }
-        
-    
+    answer.resize(k,-1);
     return answer;
 }
