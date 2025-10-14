@@ -63,11 +63,7 @@ long long solution(string numbers) {
         }
     }
     
-    for(int i=0; i<result.size(); ++i)
-    {
-        answer *= 10;
-        answer += result[i] - '0';
-    }
+    answer = stoll(result);
     
     return answer;
 }
