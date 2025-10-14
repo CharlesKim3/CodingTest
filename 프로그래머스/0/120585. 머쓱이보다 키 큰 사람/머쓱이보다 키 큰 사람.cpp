@@ -8,8 +8,7 @@ int solution(vector<int> array, int height) {
 
     for(int i=0; i<array.size(); ++i)
     {
-        if(array[i] > height)
-            ++answer;
+        answer += (array[i] > height);
     }
     return answer;
 }
