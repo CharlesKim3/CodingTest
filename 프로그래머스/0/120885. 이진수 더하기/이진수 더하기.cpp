@@ -6,25 +6,18 @@ using namespace std;
 string solution(string bin1, string bin2) {
     string answer = "";
     
-    int num1 = 0;
-    for(auto b : bin1)
-        num1 = num1 * 2 + (b - '0');
-    int num2 = 0;
-    for(auto b : bin2)
-        num2 = num2 * 2 + (b - '0');
-    int sum = num1 + num2;
+    int num = stoi(bin1, nullptr, 2) + stoi(bin2, nullptr, 2);
     
-    if(sum > 0)
+    if(num > 0)
     {
-        while(sum)
+        while(num)
         {
-            answer += to_string(sum % 2);
-            sum /= 2;
+            answer += to_string(num % 2);
+            num /= 2;
         }
         reverse(answer.begin(),answer.end());
     }
     else
         answer = "0";
-    
     return answer;
 }
