@@ -16,5 +16,5 @@ int solution(string s)
             st.push(c);
     }
 
-    return st.empty() ? 1 : 0;
+    return (st.empty());
 }
