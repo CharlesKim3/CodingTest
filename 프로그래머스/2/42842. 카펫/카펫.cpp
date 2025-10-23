@@ -1,27 +1,16 @@
-#include <string>
 #include <vector>
-
 using namespace std;
 
 vector<int> solution(int brown, int yellow) {
-    vector<int> answer(2,0);
-    int size = brown + yellow;
-    int x = 3; int y = 3;
-    while(size != x * y)
-    {
-        while(x > y)
-        {
-            ++y;
-            if(x * y == size && yellow == (x-2) * (y-2))
-            {
-                answer[0] = x; answer[1] = y;
-                return answer;
-            }
+    int total = brown + yellow;
+
+    for (int h = 3; h <= total / 3; ++h) {
+        if (total % h != 0) continue; // 가로가 정수여야 함
+        int w = total / h; 
+        
+        if ((w - 2) * (h - 2) == yellow) {
+            return {w, h};
         }
-        ++x; y = 3; 
     }
-    
-    answer[0] = x; answer[1] = y;
-    
-    return answer;
+    return {};
 }
