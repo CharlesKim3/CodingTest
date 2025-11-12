@@ -1,25 +1,37 @@
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 string solution(vector<string> participant, vector<string> completion) {
     string answer = "";
+    unordered_map<string,int> m;
     
-    sort(participant.begin(), participant.end());
-    sort(completion.begin(), completion.end());
-    
-    for(int i=0; i<completion.size(); ++i)
+    for(const auto& c : completion)
     {
-        if(completion[i] != participant[i])
-        {
-            answer = participant[i];
-            break;
-        }
+        if(m.find(c) == m.end())
+            m.insert({c,1});
+        else
+            m[c]++;
     }
     
-    if(answer == "")
-        answer = participant[participant.size() - 1];
+    for(const auto& p : participant)
+    {
+        if(m.find(p) == m.end())
+        {
+            answer = p;
+            break;
+        }
+        else
+        {
+            if(m[p] < 1)
+            {
+                answer = p;
+                break;
+            }
+            m[p]--;
+        }
+    }
     
     return answer;
 }
