@@ -3,36 +3,34 @@
 #include <algorithm>
 using namespace std;
 
-
 int main()
 {
-	int n, limit;
+	int n, x;
 	cin >> n;
 
-	vector<int> num(n,0);
-	for (int i = 0; i < num.size(); ++i)
-		cin >> num[i];
-	sort(num.begin(), num.end());
-	cin >> limit;
+	vector<int> v(n,0);
+	for (int i = 0; i < n; ++i)
+		cin >> v[i];
+	cin >> x;
+	sort(v.begin(), v.end());
 	
 	int front = 0;
-	int back = num.size() - 1;
-	int cnt = 0;
-	while (front < back)
+	int back = n - 1;
+	int result = 0;
+	while(front < back)
 	{
-		if (num[front] + num[back] == limit)
+		if (v[front] + v[back] == x)
 		{
-			++front;
-			--back;
-			++cnt;
+			++front; --back;
+			++result;
 		}
-		else if (num[front] + num[back] > limit)
+		else if (v[front] + v[back] > x)
 			--back;
-		else if(num[front] + num[back] < limit)
+		else
 			++front;
 	}
 
-	cout << cnt;
-	
+	cout << result;
+
 	return 0;
 }
