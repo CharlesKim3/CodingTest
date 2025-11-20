@@ -48,7 +48,7 @@ int main()
 	cin >> N >> M >> V;
 	graph.resize(N + 1, vector<int>());
 	visited.resize(N + 1, false);
-
+	
 	for (int i = 0; i < M; ++i)
 	{
 		int start, end;
@@ -56,15 +56,14 @@ int main()
 		graph[start].push_back(end);
 		graph[end].push_back(start);
 	}
-
+	
 	for (auto& g : graph)
 		sort(g.begin(), g.end());
-
+	
 	dfs(V);
-	for (auto v : visited)
-		v = false;
-
+	visited.assign(N + 1, false);
 	cout << endl;
 	bfs(V);
+
 	return 0;
 }
