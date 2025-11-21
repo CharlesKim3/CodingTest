@@ -28,8 +28,8 @@ void bfs(int start)
 	while (!q.empty())
 	{
 		int x = q.front();
-		q.pop();
 		cout << x << " ";
+		q.pop();
 		for (int i = 0; i < graph[x].size(); ++i)
 		{
 			int y = graph[x][i];
@@ -44,11 +44,11 @@ void bfs(int start)
 
 int main()
 {
-	
+
 	cin >> N >> M >> V;
-	graph.resize(N + 1, vector<int>());
-	visited.resize(N + 1, false);
-	
+	graph.assign(N + 1, vector<int>());
+	visited.assign(N + 1, false);
+
 	for (int i = 0; i < M; ++i)
 	{
 		int start, end;
@@ -56,13 +56,12 @@ int main()
 		graph[start].push_back(end);
 		graph[end].push_back(start);
 	}
-	
+
 	for (auto& g : graph)
 		sort(g.begin(), g.end());
-	
-	dfs(V);
+
+	dfs(V); cout << endl;
 	visited.assign(N + 1, false);
-	cout << endl;
 	bfs(V);
 
 	return 0;
