@@ -14,7 +14,7 @@ long long solution(int n) {
         prev2 = answer;
     }
     
-    if(answer < 3) answer = n;
+    if(n < 3) answer = n;
     
     return answer;
 }
