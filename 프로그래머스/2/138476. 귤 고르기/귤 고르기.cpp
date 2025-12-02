@@ -1,29 +1,27 @@
 #include <string>
 #include <vector>
+#include <queue>
 #include <map>
-#include <algorithm>
 using namespace std;
 
 int solution(int k, vector<int> tangerine) {
     int answer = 0;
     
-    map<int,int> m;
+    map<int, int> m;
     for(auto t : tangerine)
+        m[t]++;
+    
+    priority_queue<pair<int,int>> q;
+    for(auto [key, value] : m)
     {
-        if(m.find(t) == m.end())
-            m.insert({t,1});
-        else
-            m[t]++;
+        q.push({value, key});
     }
     
-    vector<pair<int,int>> v(m.begin(), m.end());
-    sort(v.begin(), v.end(), [](auto l, auto r){
-       return l.second > r.second; 
-    });
-    
-    for(auto [key, value] : v)
+    while(q.size())
     {
-        k -= value;
+        auto [key, value] = q.top();
+        q.pop();
+        k -= key;
         ++answer;
         if(k <= 0) break;
     }
