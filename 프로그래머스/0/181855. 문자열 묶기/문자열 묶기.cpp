@@ -12,7 +12,6 @@ int solution(vector<string> strArr) {
         cnt[s.size()]++;
     }
     
-    sort(cnt.begin(), cnt.end(),greater<int>());
-    answer = cnt[0];
+    answer = *max_element(cnt.begin(), cnt.end());
     return answer;
 }
